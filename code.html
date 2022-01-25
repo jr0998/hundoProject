@@ -55,17 +55,79 @@
             <div class="row row-cols-1 row-cols-lg-2 py-5 ">
                 <div class="col-lg-8">
                     <pre class="line-numbers"> <code class="language-javascript">
-                        //call hello world
-                        function helloWorld(){
-                         alert("Hello World");
+                        //get values from webpage
+                        function getValues() {
+                            //get values from the page
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+                        
+                        
+                            //validates user input as integers
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+                        
+                            if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                        
+                                //call generateNumber()    
+                                let numbers = generateNumbers(startValue, endValue);
+                                //call displayNumbers()
+                        
+                                displayNumbers(numbers);
+                            } else {
+                                //alert message to get corrective action and prevent error
+                                alert("Input not an Integer, enter correct value")
+                            }
+                        
+                        
+                        }
+                        //generate number from start value to end value
+                        function generateNumbers(start, end) {
+                            let numbers = [];
+                            //populate a dynamic array from any two start and end values given by user
+                            for (let i = start; i <= end; i++) {
+                                numbers.push(i)
+                            }
+                            return numbers;
+                        }
+                        
+                        //display all numbers and even numbers in Bold
+                        function displayNumbers(num) {
+                            let templateRows = "";
+                            for (let i = 0; i < num.length; i++) {
+                                let number = num[i];
+                                if(number % 2 == 0){
+                                    templateRows += `&lt;tr>&lt;td> &lt;strong> ${number}&lt;/strong> &lt;/td>&lt;/tr>
+                                }
+                                else{
+                                    templateRows += `&lt;tr>&lt;td>${number}&lt;/td>&lt;/tr>            
+                                }
+                        
+                            }
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
                     <h5>Hundo</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The Code is structured in 3 functions.</p>
+                    <h5>getValues()</h5>
+                    <p>getValues is the main function of this application, it takes in the values from the webpage
+                        parses them as integers. Makes sure they are a valid integer input.
+                        Then calls the generateNumbers and display Numbers functions.
+                    </p>
+                    <h5>generateNumbers()</h5>
+                    <p> generateNumbers takes two integer parameters, then creates an array to store the values of the integers between the 
+                        two parameter integers inclusivly.  Then loops through the array storing the values in the array.
+                        Lastly returning the array.
+                    </p>
+                    <h5>displayNumbers()</h5>
+                    <p>displayNumbers takes in an aray as a parameter that it is going to display. Creates a string variable that will
+                        store the html text that will be sent to the document. Then loops throught the array concatinating table rows 
+                        with the numbers in them. Then checks if the integer is even, if so making it bold otherwise leaving it the normal
+                        font weight. Lastly using innerHTML to put the string variable holding all the html to send it to the document showing
+                        the information.
+                    </p>
                 </div>
             </div>
         </div>
